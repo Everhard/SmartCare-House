@@ -8,6 +8,7 @@ use app\models\DeviceInterface;
  * This is the model class for table "device_nooliteswitch".
  *
  * @property integer $id
+ * @property integer $cid
  * @property string $name
  * @property string $config
  */

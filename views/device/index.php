@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $device_types */
+/* @var $devices */
 
 use yii\helpers\Url;
 
@@ -14,14 +15,18 @@ $this->title = 'Устройства';
   <thead>
     <tr>
       <th>Название устройства</th>
+      <th>Тип</th>
       <th>Управление</th>
     </tr>
   </thead>
   <tbody>
+    <?php foreach ($devices as $device) { ?>
     <tr>
-      <td colspan="2">Подключённых устройств нет.</td>
+        <td><?= $device->name ?></td>
+        <td><?= $device->type->name ?></td>
+        <td><a href="">Настройки</a> <a href="">Удалить</a></td>
     </tr>
-
+    <?php } ?>
   </tbody>
 </table>
 
