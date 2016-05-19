@@ -39,6 +39,9 @@ $config = [
         */
     ],
     'params' => $params,
+    'aliases' => [
+        '@devices' => '@app/devices',
+    ],
 ];
 
 if (YII_ENV_DEV) {
