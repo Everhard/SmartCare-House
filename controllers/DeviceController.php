@@ -73,4 +73,16 @@ class DeviceController extends Controller
             "device" => $device,
         ]);
     }
+    
+    public function actionDelete($id)
+    {
+        $device_connected = DeviceConnected::findOne($id);
+        
+        $device_class = "app\\devices\\".$device_connected->type->classname."\\Device";
+        $device = $device_class::findOne($device_connected->order_id);
+        
+        if ($device->delete() && $device_connected->delete()) {
+            return $this->redirect(["device/index"]);
+        }
+    }
 }
