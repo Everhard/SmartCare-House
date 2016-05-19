@@ -85,6 +85,31 @@ body > header {
     }
 }
 
+.devices-table {
+    width: 100%;
+    border: 2px solid @color-main-border;
+    background-color: rgba(0, 0, 0, 0.35);
+    border-collapse: collapse;
+    
+    tr {
+        
+        th {
+            text-align: left;
+            padding: 5px;
+        }
+    
+        td {
+            padding: 5px;
+            border: 1px solid @color-main-border;
+            
+            a {
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
 body > footer {
     position: absolute;
     bottom: 0;

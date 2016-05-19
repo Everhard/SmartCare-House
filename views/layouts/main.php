@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -30,21 +31,21 @@ use yii\helpers\Html;
     </section>
 </header>
 <nav class="zones">
-    <a href="#"><img src="img/icon-kitchen.png" alt="" /> Рабочий стол</a>
+    <a href="/"><img src="img/icon-kitchen.png" alt="" /> Рабочий стол</a>
     <a href="#"><img src="img/icon-kitchen.png" alt="" /> Кухня</a>
     <a href="#"><img src="img/icon-kitchen.png" alt="" /> Прихожая</a>
     <a href="#"><img src="img/icon-kitchen.png" alt="" /> Комната</a>
     <a href="#"><img src="img/icon-kitchen.png" alt="" /> Чердак</a>
 </nav>
 <section class="main">
-    <h2>Рабочий стол</h2>
+    <h2><?= $this->title ?></h2>
     <?= $content ?>
 </section>
 <footer>
     <nav>
       <a href="#"><img src="img/timer.png" alt="" /></a>
       <a href="#"><img src="img/timer.png" alt="" /></a>
-      <a class="settings" href="#"><img src="img/timer.png" alt="" /></a>
+      <a class="settings" href="<?=Url::to(['dashboard/settings']); ?>"><img src="img/timer.png" alt="" /></a>
     </nav>
 </footer>
 <script src="js/scripts.js"></script>

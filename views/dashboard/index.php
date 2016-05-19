@@ -1,7 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $device */
 
-$this->title = 'SmartCare House';
+$this->title = 'Рабочий стол';
 ?>
 
+Это рабочий стол.
