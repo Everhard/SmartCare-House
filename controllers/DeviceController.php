@@ -21,29 +21,56 @@ class DeviceController extends Controller
     }
     
     public function actionAdd($id)
-    {   
+    {
         $device_type = DeviceType::findOne($id);
+        $device_connected = new DeviceConnected();
         
         $device_class = "app\\devices\\".$device_type->classname."\\Device";
         $device = new $device_class();
         
-        if ($device->load(Yii::$app->request->post()) && $device->validate())
+        if ($device->load(Yii::$app->request->post()) && $device_connected->load(Yii::$app->request->post()))
         {
-            $device_connected = new DeviceConnected([
-                "type_id" => $device_type->id,
-                "name" => $device->name,
-            ]);
-            $device_connected->save();
-            
-            $device->сid = $device_connected->id;
-            $device->save();
-            
-            return $this->render("success");
+            if ($device_connected->validate() && $device->validate())
+            {
+                if ($device->save())
+                {
+                    $device_connected->type_id = $device_type->id;
+                    $device_connected->order_id = $device->id;
+                    if ($device_connected->save())
+                    {
+                        return $this->render("success");
+                    }
+                }
+            }
         }
         
-        return $this->render('@devices/'.$device_type->classname.'/views/index', [
+        return $this->render('@devices/'.$device_type->classname.'/views/add', [
+            "device_connected" => $device_connected,
             "device_type" => $device_type,
-            "model" => $device,
+            "device" => $device,
+        ]);
+    }
+    
+    public function actionEdit($id)
+    {
+        $device_connected = DeviceConnected::findOne($id);
+        
+        $device_class = "app\\devices\\".$device_connected->type->classname."\\Device";
+        $device = $device_class::findOne($device_connected->order_id);
+        
+        if ($device->load(Yii::$app->request->post()) && $device->validate())
+        {
+            $device->save();
+        }
+        
+        if ($device_connected->load(Yii::$app->request->post()) && $device_connected->validate())
+        {
+            $device_connected->save();
+        }
+        
+        return $this->render('@devices/'.$device_connected->type->classname.'/views/edit', [
+            "device_connected" => $device_connected,
+            "device" => $device,
         ]);
     }
 }

@@ -24,7 +24,7 @@ $this->title = 'Устройства';
     <tr>
         <td><?= $device->name ?></td>
         <td><?= $device->type->name ?></td>
-        <td><a href="">Настройки</a> <a href="">Удалить</a></td>
+        <td><a href="<?= Url::to(["device/edit", "id" => $device->id]) ?>">Настройки</a> <a href="">Удалить</a></td>
     </tr>
     <?php } ?>
   </tbody>

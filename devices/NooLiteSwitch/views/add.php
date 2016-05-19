@@ -7,8 +7,8 @@ $this->title = 'Добавление устройства "'.$device_type->name.
 
 <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name') ?>
-    <?= $form->field($model, 'config') ?>
+    <?= $form->field($device_connected, 'name') ?>
+    <?= $form->field($device, 'config') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Добавить') ?>

@@ -12,7 +12,7 @@ use Yii;
  * @property string $name
  */
 class DeviceConnected extends \yii\db\ActiveRecord
-{
+{   
     /**
      * @inheritdoc
      */
@@ -27,8 +27,7 @@ class DeviceConnected extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_id', 'name'], 'required'],
-            [['type_id'], 'integer'],
+            [['name'], 'required'],
             [['name'], 'string', 'max' => 255]
         ];
     }
@@ -40,7 +39,6 @@ class DeviceConnected extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type_id' => 'Device Type ID',
             'name' => 'Name',
         ];
     }

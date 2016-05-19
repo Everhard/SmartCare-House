@@ -8,12 +8,10 @@ use app\models\DeviceInterface;
  * This is the model class for table "device_nooliteswitch".
  *
  * @property integer $id
- * @property integer $cid
- * @property string $name
  * @property string $config
  */
 class Device extends \yii\db\ActiveRecord implements DeviceInterface
-{
+{   
     /**
      * @inheritdoc
      */
@@ -28,8 +26,8 @@ class Device extends \yii\db\ActiveRecord implements DeviceInterface
     public function rules()
     {
         return [
-            [['name', 'config'], 'required'],
-            [['name', 'config'], 'string', 'max' => 255]
+            [['config'], 'required'],
+            [['config'], 'string', 'max' => 255]
         ];
     }
 
@@ -40,7 +38,6 @@ class Device extends \yii\db\ActiveRecord implements DeviceInterface
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
             'config' => 'Config',
         ];
     }
