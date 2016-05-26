@@ -5,14 +5,14 @@ namespace app\controllers;
 use \Yii;
 use yii\web\Controller;
 use app\models\DeviceType;
-use app\models\DeviceConnected;
+use app\models\DevicePlugged;
 
 class DeviceController extends Controller
 {
     public function actionIndex()
-    {   
+    {
         $device_types = DeviceType::find()->all();
-        $devices = DeviceConnected::find()->all();
+        $devices = DevicePlugged::find()->all();
                 
         return $this->render('index', [
             "device_types" => $device_types,
@@ -23,7 +23,7 @@ class DeviceController extends Controller
     public function actionAdd($id)
     {
         $device_type = DeviceType::findOne($id);
-        $device_connected = new DeviceConnected();
+        $device_connected = new DevicePlugged();
         
         $device_class = "app\\devices\\".$device_type->classname."\\Device";
         $device = new $device_class();
@@ -53,7 +53,7 @@ class DeviceController extends Controller
     
     public function actionEdit($id)
     {
-        $device_connected = DeviceConnected::findOne($id);
+        $device_connected = DevicePlugged::findOne($id);
         
         $device_class = "app\\devices\\".$device_connected->type->classname."\\Device";
         $device = $device_class::findOne($device_connected->order_id);
@@ -76,7 +76,7 @@ class DeviceController extends Controller
     
     public function actionDelete($id)
     {
-        $device_connected = DeviceConnected::findOne($id);
+        $device_connected = DevicePlugged::findOne($id);
         
         $device_class = "app\\devices\\".$device_connected->type->classname."\\Device";
         $device = $device_class::findOne($device_connected->order_id);

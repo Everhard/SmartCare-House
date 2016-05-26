@@ -5,20 +5,21 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "device_connected".
+ * This is the model class for table "widget_plugged".
  *
  * @property integer $id
  * @property integer $type_id
+ * @property integer $order_id
  * @property string $name
  */
-class DeviceConnected extends \yii\db\ActiveRecord
-{   
+class WidgetPlugged extends \yii\db\ActiveRecord
+{
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'device_connected';
+        return 'widget_plugged';
     }
 
     /**
@@ -38,12 +39,11 @@ class DeviceConnected extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'name' => 'Name',
         ];
     }
     
     public function getType() {
-        return $this->hasOne(DeviceType::className(), ['id' => 'type_id']);
+        return $this->hasOne(WidgetType::className(), ['id' => 'type_id']);
     }
 }

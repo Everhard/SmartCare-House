@@ -41,6 +41,7 @@ $config = [
     'params' => $params,
     'aliases' => [
         '@devices' => '@app/devices',
+        '@widgets' => '@app/widgets',
     ],
 ];
 
